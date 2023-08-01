@@ -10,9 +10,17 @@ const Message = require('./models/Message');
 const ws = require('ws');
 const fs = require('fs');
 
+// mongoose.set('strictQuery', true);
+
 dotenv.config();
+mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGO_URL, (err) => {
-  if (err) throw err;
+  //if (err) throw err;
+  if (err){
+    throw err
+  } else {
+    console.log(`Server running  at port 4040`);
+  }
 });
 const jwtSecret = process.env.JWT_SECRET;
 const bcryptSalt = bcrypt.genSaltSync(10);
